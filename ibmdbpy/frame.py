@@ -1153,7 +1153,7 @@ class IdaDataFrame(object):
                 data.set_index(data.columns[-1], inplace=True)  # Set the index
                 data.columns = self.columns
 
-            del data.index.name
+            data.index.name = None
             #            data = ibmdbpy.utils._convert_dtypes(self, data)
             if isinstance(self, ibmdbpy.IdaSeries):
                     data = pd.Series(data[data.columns[0]])
@@ -2141,7 +2141,7 @@ class IdaDataFrame(object):
         data.columns = ["COLNAME", "TYPENAME"]
         data.columns = [x.upper() for x in data.columns]
         data.set_index(keys='COLNAME', inplace=True)
-        del data.index.name
+        data.index.name = None
         return data
 
     def _reset_attributes(self, attributes):
